@@ -12,7 +12,7 @@ namespace Tests
         [Test]
         public void Sort_OneElement_ThrowException()
         {
-            var setupList = Road.GenerateRoadList(new Road("Пункт 1", "Пункт 2"));
+            var setupList = Road.GenerateRoadList(new Road("РџСѓРЅРєС‚ 1", "РџСѓРЅРєС‚ 2"));
             var expected = new Exception("Nothing to sort here");
             var result = Assert.Throws<Exception>(() => RoadBuilder.Sort(setupList));
 
@@ -32,8 +32,8 @@ namespace Tests
         [Test]
         public void Sort_UnsortedListWithBreak_ThrowException()
         {
-            var setupList = Road.GenerateRoadList(new Road("Южнопортовый", "Печатники"),
-                                                  new Road("Текстильщики", "Нижегородский"));
+            var setupList = Road.GenerateRoadList(new Road("Р®Р¶РЅРѕРїРѕСЂС‚РѕРІС‹Р№", "РџРµС‡Р°С‚РЅРёРєРё"),
+                                                  new Road("РўРµРєСЃС‚РёР»СЊС‰РёРєРё", "РќРёР¶РµРіРѕСЂРѕРґСЃРєРёР№"));
             var expected = new Exception("Input data had circle or break");
             var result = Assert.Throws<Exception>(() => RoadBuilder.Sort(setupList));
 
@@ -43,10 +43,10 @@ namespace Tests
         [Test]
         public void Sort_UnsortedListWithCycle_ThrowException()
         {
-            var setupList = Road.GenerateRoadList(new Road("Южнопортовый", "Печатники"),
-                                                  new Road("Текстильщики", "Нижегородский"),
-                                                  new Road("Печатники", "Текстильщики"),
-                                                  new Road("Печатники", "Соколиная гора"));
+            var setupList = Road.GenerateRoadList(new Road("Р®Р¶РЅРѕРїРѕСЂС‚РѕРІС‹Р№", "РџРµС‡Р°С‚РЅРёРєРё"),
+                                                  new Road("РўРµРєСЃС‚РёР»СЊС‰РёРєРё", "РќРёР¶РµРіРѕСЂРѕРґСЃРєРёР№"),
+                                                  new Road("РџРµС‡Р°С‚РЅРёРєРё", "РўРµРєСЃС‚РёР»СЊС‰РёРєРё"),
+                                                  new Road("РџРµС‡Р°С‚РЅРёРєРё", "РЎРѕРєРѕР»РёРЅР°СЏ РіРѕСЂР°"));
             var expected = new Exception("Input data had circle or break");
             var result = Assert.Throws<Exception>(() => RoadBuilder.Sort(setupList));
 
@@ -56,12 +56,12 @@ namespace Tests
         [Test]
         public void Sort_UnsortedShortList_SortList()
         {
-            var setupList = Road.GenerateRoadList(new Road("Южнопортовый", "Печатники"),
-                                                  new Road("Текстильщики", "Нижегородский"),
-                                                  new Road("Печатники", "Текстильщики"));
-            var expected = Road.GenerateRoadList(new Road("Южнопортовый", "Печатники"),
-                                                 new Road("Печатники", "Текстильщики"),
-                                                 new Road("Текстильщики", "Нижегородский"));
+            var setupList = Road.GenerateRoadList(new Road("Р®Р¶РЅРѕРїРѕСЂС‚РѕРІС‹Р№", "РџРµС‡Р°С‚РЅРёРєРё"),
+                                                  new Road("РўРµРєСЃС‚РёР»СЊС‰РёРєРё", "РќРёР¶РµРіРѕСЂРѕРґСЃРєРёР№"),
+                                                  new Road("РџРµС‡Р°С‚РЅРёРєРё", "РўРµРєСЃС‚РёР»СЊС‰РёРєРё"));
+            var expected = Road.GenerateRoadList(new Road("Р®Р¶РЅРѕРїРѕСЂС‚РѕРІС‹Р№", "РџРµС‡Р°С‚РЅРёРєРё"),
+                                                 new Road("РџРµС‡Р°С‚РЅРёРєРё", "РўРµРєСЃС‚РёР»СЊС‰РёРєРё"),
+                                                 new Road("РўРµРєСЃС‚РёР»СЊС‰РёРєРё", "РќРёР¶РµРіРѕСЂРѕРґСЃРєРёР№"));
             var result = RoadBuilder.Sort(setupList);
 
             CompareTwoRoadLists(expected, result);
@@ -70,22 +70,22 @@ namespace Tests
         [Test]
         public void Sort_UnsortedLongList_SortList()
         {
-            var setupList = Road.GenerateRoadList(new Road("Пункт 1", "Пункт 5"),
-                                                  new Road("Пункт 2", "Пункт 8"),
-                                                  new Road("Пункт 3", "Пункт 2"),
-                                                  new Road("Пункт 4", "Пункт 9"),
-                                                  new Road("Пункт 5", "Пункт 7"),
-                                                  new Road("Пункт 6", "Пункт 3"),
-                                                  new Road("Пункт 7", "Пункт 4"),
-                                                  new Road("Пункт 9", "Пункт 6"));
-            var expected = Road.GenerateRoadList(new Road("Пункт 1", "Пункт 5"),
-                                                 new Road("Пункт 5", "Пункт 7"),
-                                                 new Road("Пункт 7", "Пункт 4"),
-                                                 new Road("Пункт 4", "Пункт 9"),
-                                                 new Road("Пункт 9", "Пункт 6"),
-                                                 new Road("Пункт 6", "Пункт 3"),
-                                                 new Road("Пункт 3", "Пункт 2"),
-                                                 new Road("Пункт 2", "Пункт 8"));
+            var setupList = Road.GenerateRoadList(new Road("РџСѓРЅРєС‚ 1", "РџСѓРЅРєС‚ 5"),
+                                                  new Road("РџСѓРЅРєС‚ 2", "РџСѓРЅРєС‚ 8"),
+                                                  new Road("РџСѓРЅРєС‚ 3", "РџСѓРЅРєС‚ 2"),
+                                                  new Road("РџСѓРЅРєС‚ 4", "РџСѓРЅРєС‚ 9"),
+                                                  new Road("РџСѓРЅРєС‚ 5", "РџСѓРЅРєС‚ 7"),
+                                                  new Road("РџСѓРЅРєС‚ 6", "РџСѓРЅРєС‚ 3"),
+                                                  new Road("РџСѓРЅРєС‚ 7", "РџСѓРЅРєС‚ 4"),
+                                                  new Road("РџСѓРЅРєС‚ 9", "РџСѓРЅРєС‚ 6"));
+            var expected = Road.GenerateRoadList(new Road("РџСѓРЅРєС‚ 1", "РџСѓРЅРєС‚ 5"),
+                                                 new Road("РџСѓРЅРєС‚ 5", "РџСѓРЅРєС‚ 7"),
+                                                 new Road("РџСѓРЅРєС‚ 7", "РџСѓРЅРєС‚ 4"),
+                                                 new Road("РџСѓРЅРєС‚ 4", "РџСѓРЅРєС‚ 9"),
+                                                 new Road("РџСѓРЅРєС‚ 9", "РџСѓРЅРєС‚ 6"),
+                                                 new Road("РџСѓРЅРєС‚ 6", "РџСѓРЅРєС‚ 3"),
+                                                 new Road("РџСѓРЅРєС‚ 3", "РџСѓРЅРєС‚ 2"),
+                                                 new Road("РџСѓРЅРєС‚ 2", "РџСѓРЅРєС‚ 8"));
             var result = RoadBuilder.Sort(setupList);
 
             CompareTwoRoadLists(expected, result);
